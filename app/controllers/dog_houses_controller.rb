@@ -3,9 +3,9 @@ class DogHousesController < ApplicationController
 
   def show
     dog_house = DogHouse.find(params[:id])
-    render json: dog_house
+    render json: dog_house, except: [:created_at, :updated_at], include: {reviews: {except: [:created_at, :updated_at]}}
   end
-
+  
   private
 
   def render_not_found_response
